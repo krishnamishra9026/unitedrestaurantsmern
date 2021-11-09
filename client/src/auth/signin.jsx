@@ -1,4 +1,5 @@
 import React,{useState,useEffect} from 'react';
+import axios from "axios";
 import man from '../assets/images/dashboard/profile.jpg';
 import {Container,Row,Col,Form,FormGroup,Input,Label,Button,NavItem, NavLink, Nav,TabContent,TabPane} from 'reactstrap'
 import {firebase_app,googleProvider,facebookProvider,githubProvider, Jwt_token } from '../data/config'
@@ -108,20 +109,19 @@ const Logins = (props) => {
 
     const loginWithJwt = (email,password) => {
 
-      const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: ({ email, password })
-      };
-      
-      return fetch('/users/authenticate', requestOptions)
-      .then(handleResponse)
+      const userData = {
+      email: email,
+      password: password
+    };
+
+      axios.post("/api/users/login", userData)
+      // .then(handleResponse)
       .then(user => {
         // store user details and jwt token in local storage to keep user logged in between page refreshes
         setValue(man);
-        console.log("result", user);
+        console.log("result", user.token);
         setName("Emay Walter");
-        localStorage.setItem('token', user);
+        localStorage.setItem('token', user.token);
         window.location.href = `${process.env.PUBLIC_URL}/dashboard/default/`
         return user;
       });

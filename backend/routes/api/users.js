@@ -29,7 +29,8 @@ const {errors, isValid } = validateRegisterInput(req.body);
   User.findOne({ email: req.body.email }).then(user => {
     if (user) {
       return res.status(400).json({ email: "Email already exists" });
-    } else {     
+    } else {
+     
       
       const newUser = new User({
       
@@ -235,7 +236,8 @@ router.post("/login", (req, res) => {
           (err, token) => {
             res.json({
               success: true,
-              token: "Bearer " + token
+              token: token
+              // token: "Bearer " + token
             });
           }
         );
