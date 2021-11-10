@@ -2,8 +2,8 @@
 const mysql = require('mysql');
 const connection = mysql.createConnection({
 						host     : 'localhost',
-						user     : 'admin',
-						password : 'password',
+						user     : 'root',
+						pasword : '',
 						port     : '3306',
 						database : 'mernunited',
 						charset: "utf8mb4_unicode_ci",

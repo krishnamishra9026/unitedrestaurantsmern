@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const {DB} = require('../../config/database');
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const keys = require("../../config/keys");
@@ -209,7 +210,53 @@ router.post("/login", (req, res) => {
   const password = req.body.password;
 
   // Find user by email
-  User.findOne({ email }).then(user => {
+
+
+  let sql = "SELECT * FROM users where email = '"+email+"'";
+  DB.query(sql,(err,user)=>{
+    if(err){
+      return res.status(404).json({ emailnotfound: "Error in sqql!" });   
+    }else if (!user[0]) {
+      return res.status(404).json({ emailnotfound: "Email or Password not found" });
+    }else {
+      console.log(user[0]);
+      bcrypt.compare(password, user[0].password).then(isMatch => {
+      if (isMatch) {
+        // User matched
+        // Create JWT Payload
+        const payload = {
+          id: user[0].id,
+          name: user[0].name,
+          email: user[0].email,
+          role:user[0].role
+        };
+
+        // Sign token
+        jwt.sign(
+          payload,
+          keys.secretOrKey,
+          {
+            expiresIn: 31556926 // 1 year in seconds
+          },
+          (err, token) => {
+            res.json({
+              success: true,
+              token: token
+              // token: "Bearer " + token
+            });
+          }
+        );
+      } else {
+        return res
+          .status(400)
+          .json({ passwordincorrect: "Password incorrect" });
+      }
+    });
+    }
+  });
+
+
+  /*User.findOne({ email }).then(user => {
     // Check if user exists
     if (!user) {
       return res.status(404).json({ emailnotfound: "Email not found" });
@@ -248,7 +295,7 @@ router.post("/login", (req, res) => {
           .json({ passwordincorrect: "Password incorrect" });
       }
     });
-  });
+  });*/
 });
 //View User List
 router.get('/userlist', (req, res) => {

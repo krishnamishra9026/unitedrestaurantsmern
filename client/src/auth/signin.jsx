@@ -127,7 +127,6 @@ const Logins = (props) => {
         if(decoded.role == 'admin'){
           window.location.href = `${process.env.PUBLIC_URL}/dashboard/default/`
         }else{
-
           window.location.href = `${process.env.PUBLIC_URL}/dashboard/ecommerce/`
         }
         return user.data;
