@@ -17,7 +17,7 @@ export const configureFakeBackend = () => {
 
                 // get users - secure
                 if (url.endsWith('/users') && opts.method === 'GET') {
-                    if (isLoggedIn) return unauthorised();
+                    if (!isLoggedIn) return unauthorised();
                     return ok(users);
                 }
 
@@ -44,6 +44,8 @@ export const configureFakeBackend = () => {
 }
 
 export function handleResponse(response) {
+    console.log(response);
+    return;
     return response.text().then(text => {
         const data = text && JSON.parse(text);
         if (!response.ok) {

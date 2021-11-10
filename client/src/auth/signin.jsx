@@ -130,7 +130,13 @@ const Logins = (props) => {
           window.location.href = `${process.env.PUBLIC_URL}/dashboard/ecommerce/`
         }
         return user.data;
-      });
+      }).catch((error) => {
+        if (error.response) {
+          setTimeout(() => {
+              toast.error(error.response.data.error);
+          }, 200);
+        } 
+    });
     }
 
     return (

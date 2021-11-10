@@ -215,9 +215,9 @@ router.post("/login", (req, res) => {
   let sql = "SELECT * FROM users where email = '"+email+"'";
   DB.query(sql,(err,user)=>{
     if(err){
-      return res.status(404).json({ emailnotfound: "Error in sqql!" });   
+      return res.status(404).json({ error: "Error in sqql!" });   
     }else if (!user[0]) {
-      return res.status(404).json({ emailnotfound: "Email or Password not found" });
+      return res.status(404).json({ error: "Email or Password not found" });
     }else {
       console.log(user[0]);
       bcrypt.compare(password, user[0].password).then(isMatch => {
@@ -249,7 +249,7 @@ router.post("/login", (req, res) => {
       } else {
         return res
           .status(400)
-          .json({ passwordincorrect: "Password incorrect" });
+          .json({ error: "Password incorrect" });
       }
     });
     }
