@@ -1,6 +1,8 @@
 // dashbaord
-import Default from '../components/dashboard/default'
-import Ecommerce from '../components/dashboard/ecommerce'
+import Default from '../components/dashboard/admin/default'
+import AdminDefault from '../components/dashboard/admin/default'
+import Ecommerce from '../components/dashboard/vendor/ecommerce'
+import VendorEcommerce from '../components/dashboard/vendor/ecommerce'
 
 // widgets
 import GeneralWidget from '../components/widgets/general'
@@ -204,7 +206,9 @@ import TodoFirebase from "../components/application/todo-firebase-app"
 
 
 export const routes = [
+        { path:"/dashboard/admin/:layout/", Component:AdminDefault},
         { path:"/dashboard/default/:layout/", Component:Default},
+        { path:"/dashboard/vendor/:layout/", Component:VendorEcommerce},
         { path:"/dashboard/ecommerce/:layout/", Component:Ecommerce},
 
         { path:"/widgets/general/:layout", Component:GeneralWidget},

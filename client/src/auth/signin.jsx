@@ -125,9 +125,9 @@ const Logins = (props) => {
         setName(decoded.name);
         localStorage.setItem('token', user.data.token);
         if(decoded.role == 'admin'){
-          window.location.href = `${process.env.PUBLIC_URL}/dashboard/admin/default/`
+          window.location.href = `${process.env.PUBLIC_URL}/dashboard/admin/`
         }else{
-          window.location.href = `${process.env.PUBLIC_URL}/dashboard/vendor/ecommerce/`
+          window.location.href = `${process.env.PUBLIC_URL}/dashboard/vendor/`
         }
         return user.data;
       }).catch((error) => {

@@ -1,14 +1,14 @@
 import React, { Fragment,useState } from 'react';
-import Breadcrumb from '../../layout/breadcrumb'
+import Breadcrumb from '../../../layout/breadcrumb'
 import ApexCharts from 'react-apexcharts'
 import Slider from "react-slick";
 import {Container,Row,Col,Card,CardBody,CardHeader,Table} from 'reactstrap' 
 import CountUp from 'react-countup';
-import {Monthlysales,columnCharts,totalearning,Riskfactorchart} from './chartsData/apex-charts-data'
+import {Monthlysales,columnCharts,totalearning,Riskfactorchart} from '../chartsData/apex-charts-data'
 import { withGoogleMap, GoogleMap, withScriptjs } from "react-google-maps";
-import {NewProduct,NewsUpdate,RiskFactor,BestSeller,Location,TodayTotalSale,TodayTotalVisits,OurSaleValue,New,Hot,TotalProfit,HikeShoes,CouponCode,TreePot,Watch,TShirt,TotalGoal,GoalArchive,Duration,DownloadDetails,Johnketer,HerryVenter,Done,Pending,LoainDeo,TodayStockValue,Bag,HorenHors,InProcess,FenterJessy,Success} from '../../constant'
+import {NewProduct,NewsUpdate,RiskFactor,BestSeller,Location,TodayTotalSale,TodayTotalVisits,OurSaleValue,New,Hot,TotalProfit,HikeShoes,CouponCode,TreePot,Watch,TShirt,TotalGoal,GoalArchive,Duration,DownloadDetails,Johnketer,HerryVenter,Done,Pending,LoainDeo,TodayStockValue,Bag,HorenHors,InProcess,FenterJessy,Success} from '../../../constant'
 
-const Ecommerce = (props) => {
+const VendorEcommerce = (props) => {
     // eslint-disable-next-line
     const[location,setlocation] = useState({ address: false,
       mapPosition: {
@@ -45,7 +45,7 @@ const Ecommerce = (props) => {
 
     return (
         <Fragment>
-            <Breadcrumb parent="Dashboard" title="Ecommerce" />
+            <Breadcrumb parent="Dashboard" title="VendorEcommerce" />
             <Container fluid={true}>
             <Row className="size-column">
               <Col xl="7 xl-100" className="box-col-12 ">
@@ -189,7 +189,7 @@ const Ecommerce = (props) => {
                           <tbody className="f-w-500">
                             <tr>
                               <td>
-                                <div className="media"><img className="img-fluid m-r-15 rounded-circle" src={require("../../assets/images/dashboard-2/product-1.png")} alt=""/>
+                                <div className="media"><img className="img-fluid m-r-15 rounded-circle" src={require("../../../assets/images/dashboard-2/product-1.png")} alt=""/>
                                   <div className="media-body"><span>{HikeShoes}</span>
                                     <p className="font-roboto">{"100 item"}</p>
                                   </div>
@@ -204,7 +204,7 @@ const Ecommerce = (props) => {
                             </tr>
                             <tr>
                               <td>
-                                <div className="media"><img className="img-fluid m-r-15 rounded-circle" src={require("../../assets/images/dashboard-2/product-3.png")} alt=""/>
+                                <div className="media"><img className="img-fluid m-r-15 rounded-circle" src={require("../../../assets/images/dashboard-2/product-3.png")} alt=""/>
                                   <div className="media-body"><span>{TreePot}</span>
                                     <p className="font-roboto">{"105 item"}</p>
                                   </div>
@@ -219,7 +219,7 @@ const Ecommerce = (props) => {
                             </tr>
                             <tr>
                               <td>
-                                <div className="media"><img className="img-fluid m-r-15 rounded-circle" src={require("../../assets/images/dashboard-2/product-4.png")} alt=""/>
+                                <div className="media"><img className="img-fluid m-r-15 rounded-circle" src={require("../../../assets/images/dashboard-2/product-4.png")} alt=""/>
                                   <div className="media-body"><span>{Bag}</span>
                                     <p className="font-roboto">{"604 item"}</p>
                                   </div>
@@ -234,7 +234,7 @@ const Ecommerce = (props) => {
                             </tr>
                             <tr>
                               <td>
-                                <div className="media"><img className="img-fluid m-r-15 rounded-circle" src={require("../../assets/images/dashboard-2/product-5.png")} alt=""/>
+                                <div className="media"><img className="img-fluid m-r-15 rounded-circle" src={require("../../../assets/images/dashboard-2/product-5.png")} alt=""/>
                                   <div className="media-body"><span>{Watch}</span>
                                     <p className="font-roboto">{"541 item"}</p>
                                   </div>
@@ -249,7 +249,7 @@ const Ecommerce = (props) => {
                             </tr>
                             <tr>
                               <td>
-                                <div className="media"><img className="img-fluid m-r-15 rounded-circle" src={require("../../assets/images/dashboard-2/product-6.png")} alt=""/>
+                                <div className="media"><img className="img-fluid m-r-15 rounded-circle" src={require("../../../assets/images/dashboard-2/product-6.png")} alt=""/>
                                   <div className="media-body"><span>{TShirt}</span>
                                     <p className="font-roboto">{"999 item"}</p>
                                   </div>
@@ -429,7 +429,7 @@ const Ecommerce = (props) => {
                                     </div>
                                   </div>
                                   <div className="col-xl-4 col-md-12">
-                                    <div className="center-img"><img className="img-fluid" src={require("../../assets/images/dashboard-2/offer-shoes-3.png")} alt="..."/></div>
+                                    <div className="center-img"><img className="img-fluid" src={require("../../../assets/images/dashboard-2/offer-shoes-3.png")} alt="..."/></div>
                                   </div>
                                   <div className="col-xl-4 col-md-6">
                                     <div className="d-flex">
@@ -452,7 +452,7 @@ const Ecommerce = (props) => {
                                     </div>
                                   </div>
                                   <div className="col-xl-4 col-md-12">
-                                    <div className="center-img"><img className="img-fluid" src={require("../../assets/images/dashboard-2/offer-shoes-3.png")} alt="..."/></div>
+                                    <div className="center-img"><img className="img-fluid" src={require("../../../assets/images/dashboard-2/offer-shoes-3.png")} alt="..."/></div>
                                   </div>
                                   <div className="col-xl-4 col-md-6">
                                     <div className="d-flex">
@@ -475,7 +475,7 @@ const Ecommerce = (props) => {
                                     </div>
                                   </div>
                                   <div className="col-xl-4 col-md-12">
-                                    <div className="center-img"><img className="img-fluid" src={require("../../assets/images/dashboard-2/offer-shoes-3.png")} alt="..."/></div>
+                                    <div className="center-img"><img className="img-fluid" src={require("../../../assets/images/dashboard-2/offer-shoes-3.png")} alt="..."/></div>
                                   </div>
                                   <div className="col-xl-4 col-md-6">
                                     <div className="d-flex">
@@ -514,7 +514,7 @@ const Ecommerce = (props) => {
                                 <tbody>
                                   <tr>
                                     <td>
-                                      <div className="d-inline-block align-middle"><img className="img-40 m-r-15 rounded-circle align-top" src={require("../../assets/images/avtar/7.jpg")} alt=""/>
+                                      <div className="d-inline-block align-middle"><img className="img-40 m-r-15 rounded-circle align-top" src={require("../../../assets/images/avtar/7.jpg")} alt=""/>
                                         <div className="status-circle bg-primary"></div>
                                         <div className="d-inline-block"><span>{Johnketer}</span>
                                           <p className="font-roboto">{"2019"}</p>
@@ -529,7 +529,7 @@ const Ecommerce = (props) => {
                                   </tr>
                                   <tr>
                                     <td>
-                                      <div className="d-inline-block align-middle"><img className="img-40 m-r-15 rounded-circle align-top" src={require("../../assets/images/avtar/4.jpg")} alt=""/>
+                                      <div className="d-inline-block align-middle"><img className="img-40 m-r-15 rounded-circle align-top" src={require("../../../assets/images/avtar/4.jpg")} alt=""/>
                                         <div className="status-circle bg-primary"></div>
                                         <div className="d-inline-block"><span>{HerryVenter}</span>
                                           <p className="font-roboto">{"2020"}</p>
@@ -544,7 +544,7 @@ const Ecommerce = (props) => {
                                   </tr>
                                   <tr>
                                     <td>
-                                      <div className="d-inline-block align-middle"><img className="img-40 m-r-15 rounded-circle align-top" src={require("../../assets/images/avtar/16.jpg")} alt=""/>
+                                      <div className="d-inline-block align-middle"><img className="img-40 m-r-15 rounded-circle align-top" src={require("../../../assets/images/avtar/16.jpg")} alt=""/>
                                         <div className="status-circle bg-primary"></div>
                                         <div className="d-inline-block"><span>{LoainDeo}</span>
                                           <p className="font-roboto">{"2020"}</p>
@@ -559,7 +559,7 @@ const Ecommerce = (props) => {
                                   </tr>
                                   <tr>
                                     <td>
-                                      <div className="d-inline-block align-middle"><img className="img-40 m-r-15 rounded-circle align-top" src={require("../../assets/images/avtar/11.jpg")} alt=""/>
+                                      <div className="d-inline-block align-middle"><img className="img-40 m-r-15 rounded-circle align-top" src={require("../../../assets/images/avtar/11.jpg")} alt=""/>
                                         <div className="status-circle bg-primary"></div>
                                         <div className="d-inline-block"><span>{HorenHors}</span>
                                           <p className="font-roboto">{"2020"}</p>
@@ -574,7 +574,7 @@ const Ecommerce = (props) => {
                                   </tr>
                                   <tr>
                                     <td>
-                                      <div className="d-inline-block align-middle"><img className="img-40 m-r-15 rounded-circle align-top" src={require("../../assets/images/avtar/3.jpg")} alt=""/>
+                                      <div className="d-inline-block align-middle"><img className="img-40 m-r-15 rounded-circle align-top" src={require("../../../assets/images/avtar/3.jpg")} alt=""/>
                                         <div className="status-circle bg-primary"></div>
                                         <div className="d-inline-block"><span>{FenterJessy}</span>
                                           <p className="font-roboto">{"2021"}</p>
@@ -603,4 +603,4 @@ const Ecommerce = (props) => {
     );
 }
 
-export default Ecommerce;
+export default VendorEcommerce;

@@ -1,17 +1,17 @@
 import React, { Fragment, useEffect, useState } from 'react';
-import Breadcrumb from '../../layout/breadcrumb'
+import Breadcrumb from '../../../layout/breadcrumb'
 import { Container, Row, Col, Card, CardHeader, CardBody } from 'reactstrap'
 import DatePicker from "react-datepicker";
 import ApexCharts from 'react-apexcharts'
 import ChartistChart from 'react-chartist';
 import Knob from "knob";
-import { Currentlysale, Marketvalue } from './chartsData/apex-charts-data'
-import { smallchart1data, smallchart1option, smallchart2data, smallchart2option, smallchart3data, smallchart3option, smallchart4data, smallchart4option } from './chartsData/chartist-charts-data'
+import { Currentlysale, Marketvalue } from '../chartsData/apex-charts-data'
+import { smallchart1data, smallchart1option, smallchart2data, smallchart2option, smallchart3data, smallchart3option, smallchart4data, smallchart4option } from '../chartsData/chartist-charts-data'
 import { Send, Clock } from 'react-feather';
-import {Dashboard,Summary,NewsUpdate,Appointment,Notification,MarketValue,Chat,New,Tomorrow,Yesterday,Daily,Weekly,Monthly,Store,Online,ReferralEarning,CashBalance,SalesForcasting,Purchase,Sales,SalesReturn,PurchaseRet,PurchaseOrderValue,ProductOrderValue,Pending,Yearly,Hot,Today,VenterLoren,Done,JohnLoren,Year,Month,Day,RightNow} from '../../constant'
+import {Dashboard,Summary,NewsUpdate,Appointment,Notification,MarketValue,Chat,New,Tomorrow,Yesterday,Daily,Weekly,Monthly,Store,Online,ReferralEarning,CashBalance,SalesForcasting,Purchase,Sales,SalesReturn,PurchaseRet,PurchaseOrderValue,ProductOrderValue,Pending,Yearly,Hot,Today,VenterLoren,Done,JohnLoren,Year,Month,Day,RightNow} from '../../../constant'
 
 
-const Default = (props) => {
+const AdminDefault = (props) => {
 
   const [daytimes,setDayTimes] = useState()
   const today = new Date()
@@ -91,7 +91,7 @@ const Default = (props) => {
                   </div>
                 </div>
                 <div className="greeting-user text-center">
-                  <div className="profile-vector"><img className="img-fluid" src={require("../../assets/images/dashboard/welcome.png")} alt="" /></div>
+                  <div className="profile-vector"><img className="img-fluid" src={require("../../../assets/images/dashboard/welcome.png")} alt="" /></div>
                   <h4 className="f-w-600"><span id="greeting">{daytimes}</span> <span className="right-circle"><i className="fa fa-check-circle f-14 middle"></i></span></h4>
                   <p><span> {"Today's earrning is $405 & your sales increase rate is 3.7 over the last 24 hours"}</span></p>
                   <div className="whatsnew-btn"><a className="btn btn-primary" href="#javascript">{"Whats New !"}</a></div>
@@ -390,7 +390,7 @@ const Default = (props) => {
                       <table className="table table-bordernone">
                         <tbody>
                           <tr>
-                            <td><img className="img-fluid img-40 rounded-circle mb-3" src={require("../../assets/images/appointment/app-ent.jpg")} alt="" />
+                            <td><img className="img-fluid img-40 rounded-circle mb-3" src={require("../../../assets/images/appointment/app-ent.jpg")} alt="" />
                               <div className="status-circle bg-primary"></div>
                             </td>
                             <td className="img-content-box"><span className="d-block">{VenterLoren}</span><span className="font-roboto">Now</span></td>
@@ -402,7 +402,7 @@ const Default = (props) => {
                             </td>
                           </tr>
                           <tr>
-                            <td><img className="img-fluid img-40 rounded-circle" src={require("../../assets/images/appointment/app-ent.jpg")} alt="" />
+                            <td><img className="img-fluid img-40 rounded-circle" src={require("../../../assets/images/appointment/app-ent.jpg")} alt="" />
                               <div className="status-circle bg-primary"></div>
                             </td>
                             <td className="img-content-box"><span className="d-block">{JohnLoren}</span><span className="font-roboto">{"11:00"}</span></td>
@@ -466,8 +466,8 @@ const Default = (props) => {
                 <div className="media">
                   <div className="media-body">
                     <div className="d-flex mb-3">
-                      <div className="inner-img"><img className="img-fluid" src={require("../../assets/images/notification/1.jpg")} alt="Product-1" /></div>
-                      <div className="inner-img"><img className="img-fluid" src={require("../../assets/images/notification/2.jpg")} alt="Product-2" /></div>
+                      <div className="inner-img"><img className="img-fluid" src={require("../../../assets/images/notification/1.jpg")} alt="Product-1" /></div>
+                      <div className="inner-img"><img className="img-fluid" src={require("../../../assets/images/notification/2.jpg")} alt="Product-2" /></div>
                     </div><span className="mt-3">{"Quisque a consequat ante sit amet magna..."}</span>
                   </div>
                 </div>
@@ -509,7 +509,7 @@ const Default = (props) => {
                 <div className="chat">
                   <div className="media left-side-chat">
                     <div className="media-body d-flex">
-                      <div className="img-profile"> <img className="img-fluid" src={require("../../assets/images/User.jpg")} alt="Profile" /></div>
+                      <div className="img-profile"> <img className="img-fluid" src={require("../../../assets/images/User.jpg")} alt="Profile" /></div>
                       <div className="main-chat">
                         <div className="message-main"><span className="mb-0">{"Hi deo, Please send me link."}</span></div>
                         <div className="sub-message message-main"><span className="mb-0">{RightNow}</span></div>
@@ -527,7 +527,7 @@ const Default = (props) => {
                   </div>
                   <div className="media left-side-chat">
                     <div className="media-body d-flex">
-                      <div className="img-profile"> <img className="img-fluid" src={require("../../assets/images/User.jpg")} alt="Profile" /></div>
+                      <div className="img-profile"> <img className="img-fluid" src={require("../../../assets/images/User.jpg")} alt="Profile" /></div>
                       <div className="main-chat">
                         <div className="sub-message message-main mt-0"><span>{"It's argenty"}</span></div>
                       </div>
@@ -566,4 +566,4 @@ const Default = (props) => {
   );
 }
 
-export default Default;
+export default AdminDefault;
