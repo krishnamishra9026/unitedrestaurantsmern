@@ -1,5 +1,6 @@
 import React,{useState,useEffect} from 'react';
 import axios from "axios";
+import jwt_decode from "jwt-decode";
 import man from '../assets/images/dashboard/profile.jpg';
 import {Container,Row,Col,Form,FormGroup,Input,Label,Button,NavItem, NavLink, Nav,TabContent,TabPane} from 'reactstrap'
 import {firebase_app,googleProvider,facebookProvider,githubProvider, Jwt_token } from '../data/config'
@@ -117,14 +118,19 @@ const Logins = (props) => {
       axios.post("/api/users/login", userData)
       // .then(handleResponse)
       .then(user => {
+        var decoded = jwt_decode(user.data.token);
         // store user details and jwt token in local storage to keep user logged in between page refreshes
         setValue(man);
-        console.log("result", user.token);
-        setName("Emay Walter");
-        localStorage.setItem('token', user.token);
-        // alert('dd');
-        window.location.href = `${process.env.PUBLIC_URL}/dashboard/default/`
-        return user;
+        console.log("result", user.data);
+        setName(decoded.name);
+        localStorage.setItem('token', user.data.token);
+        if(decoded.role == 'admin'){
+          window.location.href = `${process.env.PUBLIC_URL}/dashboard/default/`
+        }else{
+
+          window.location.href = `${process.env.PUBLIC_URL}/dashboard/ecommerce/`
+        }
+        return user.data;
       });
     }
 
