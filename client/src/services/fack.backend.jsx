@@ -17,7 +17,7 @@ export const configureFakeBackend = () => {
 
                 // get users - secure
                 if (url.endsWith('/users') && opts.method === 'GET') {
-                    if (!isLoggedIn) return unauthorised();
+                    if (isLoggedIn) return unauthorised();
                     return ok(users);
                 }
 

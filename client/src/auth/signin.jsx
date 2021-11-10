@@ -122,6 +122,7 @@ const Logins = (props) => {
         console.log("result", user.token);
         setName("Emay Walter");
         localStorage.setItem('token', user.token);
+        // alert('dd');
         window.location.href = `${process.env.PUBLIC_URL}/dashboard/default/`
         return user;
       });
