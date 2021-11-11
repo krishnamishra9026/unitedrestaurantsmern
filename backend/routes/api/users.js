@@ -34,18 +34,17 @@ const {errors, isValid } = validateRegisterInput(req.body);
      
       
       const newUser = new User({
-
         name: req.body.first_name+ ' ' + req.body.last_name,
         email: req.body.email,
         mobile: req.body.mobile,
+        address: req.body.address,
         password: req.body.password,
         role: (req.body.role) ? req.body.role : 'vendor',
         temporarytoken:jwt.sign({name: req.body.name},
           keys.secretOrKey,
-          { expiresIn: 1200
-          }
-          )
-
+          { 
+            expiresIn: 1200
+          })
       });
       
       // Hash password before saving in database
@@ -54,29 +53,22 @@ const {errors, isValid } = validateRegisterInput(req.body);
           if (err) throw err;
           newUser.password = hash;
           newUser
-            .save()
-var name = req.body.first_name+' '+req.body.last_name; 
-            var sql = "INSERT INTO `users` (`role`, `name`, `email`, `mobile`, `password`) VALUES ('vendor', '"+name+"', '"+req.body.email+"', '"+req.body.mobile+"', '"+hash+"')";
-DB.query(sql, function (err, result) {  
-if (err) throw err;  
- return res.json({
-                
-                succeed: true,
-                message: "user inserted successfully!"
-                });
-});  
-         
+          .save()
+          var name = req.body.first_name+' '+req.body.last_name; 
+          var sql = "INSERT INTO `users` (`role`, `name`, `email`, `mobile`, `password`,`address`) VALUES ('vendor', '"+name+"', '"+req.body.email+"', '"+req.body.mobile+"', '"+hash+"', '"+req.body.address+"')";
+          DB.query(sql, function (err, result) {  
+            if (err) throw err;  
+            return res.json({
 
-          
-   
-            
+              succeed: true,
+              message: "user inserted successfully!"
+            });
+          });         
         });
-      });
-     
+      });     
     }
   });
 });
-
 
 
 // Route to activate the user's account

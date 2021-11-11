@@ -11,6 +11,7 @@ const Register = (props) => {
   const [first_name, setFirstName ] = useState('');
   const [last_name, setLastName ] = useState('');
   const [mobile, setMobile ] = useState('');
+  const [address, setAddress ] = useState('');
   const [email, setEmail ] = useState('');
   const [password, setPassword ] = useState('');
 
@@ -91,6 +92,14 @@ const Register = (props) => {
       setMobile(value);
       break;
 
+      case 'address': 
+      errors.address = 
+      value.length < 1
+      ? 'field is Required!'
+      : '';
+      setAddress(value);
+      break;
+
       case 'email': 
       errors.email = 
       value.length < 1
@@ -123,6 +132,7 @@ const Register = (props) => {
         first_name:first_name,
         last_name:last_name,
         mobile:mobile,
+        address:address,
         email:email,
         password:password
       }
@@ -192,6 +202,11 @@ const Register = (props) => {
                     <Label className="col-form-label">Mobile Number</Label>
                     <Input className="form-control" name="mobile" value={mobile} onChange={handleChange} type="number" required="" placeholder="Test@gmail.com"/>
                     <div style={{color:'red'}}>{errors.mobile}</div>
+                  </FormGroup>
+
+                  <FormGroup>
+                    <Label className="col-form-label">Address</Label>
+                    <textarea className="form-control" placeholder="Address" name="address" onChange={handleChange} >{address}</textarea>
                   </FormGroup>
 
                   <FormGroup>

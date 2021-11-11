@@ -193,17 +193,17 @@ const Logins = (props) => {
                         <div className="show-hide" onClick={() => setTogglePassword(!togglePassword)}><span className={togglePassword ? "" : "show"}></span></div>
                       </FormGroup>
                       <div className="form-group mb-0">
-                        <div className="checkbox ml-3">
+                        {/*<div className="checkbox ml-3">
                           <Input id="checkbox1" type="checkbox"/>
                           <Label className="text-muted" for="checkbox1">{RememberPassword}</Label>
-                        </div><a className="link" href="#javascript">{ForgotPassword}</a>
+                        </div><a className="link" href="#javascript">{ForgotPassword}</a>*/}
                         {selected === "firebase" ?
                         <Button color="primary" className="btn-block" disabled={loading ? loading : loading} onClick={(e) => loginAuth(e)}>{loading ? "LOADING..." : SignIn }</Button>
                         :
-                        <Button color="primary" className="btn-block" onClick={() => loginWithJwt(email,password)}>{LoginWithJWT}</Button>
+                        <Button color="primary" className="btn-block" onClick={() => loginWithJwt(email,password)}>Login</Button>
                         }
                       </div>
-                      <h6 className="text-muted mt-4 or">{"Or Sign in with"}</h6>
+                      {/*<h6 className="text-muted mt-4 or">{"Or Sign in with"}</h6>*/}
                       
                       <p className="mt-4 mb-0">{"Don't have account?"}<a className="ml-2" href="/signup">{CreateAccount}</a></p>
                     </Form>
