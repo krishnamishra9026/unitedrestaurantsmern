@@ -17,7 +17,7 @@ const Logins = (props) => {
     const [email, setEmail] = useState("test@gmail.com");
     const [password, setPassword] = useState("test123");
     const [loading,setLoading] = useState(false) 
-    const [selected, setSelected] = useState("firebase");
+    const [selected, setSelected] = useState("jwt");
     const [togglePassword,setTogglePassword] = useState(false)
 
     const [value, setValue] = useState(
@@ -27,10 +27,15 @@ const Logins = (props) => {
         localStorage.getItem('Name')
     );
 
+    const [role, setRole] = useState(
+        localStorage.getItem('Role')
+    );
+
     useEffect(() => {
       
     localStorage.setItem('profileURL', value);
     localStorage.setItem('Name', name);
+    localStorage.setItem('Role', role);
     }, [value,name]);
 
     const loginAuth = async (e) => {
@@ -121,8 +126,9 @@ const Logins = (props) => {
         var decoded = jwt_decode(user.data.token);
         // store user details and jwt token in local storage to keep user logged in between page refreshes
         setValue(man);
-        console.log("result", user.data);
+        console.log("result", user.data,decoded);
         setName(decoded.name);
+        setRole(decoded.role);
         localStorage.setItem('token', user.data.token);
         if(decoded.role == 'admin'){
           window.location.href = `${process.env.PUBLIC_URL}/dashboard/admin/`
@@ -152,7 +158,7 @@ const Logins = (props) => {
                 </a>
               </div>
               <div className="login-main login-tab"> 
-                <Nav className="border-tab flex-column" tabs>
+                <Nav className="border-tab flex-column" tabs style={{display:'none'}}>
                   <NavItem>
                     <NavLink className={selected === 'firebase' ? 'active' : ''} onClick={() => setSelected('firebase')}>
                       <img src={require("../assets/images/firebase.svg")} alt="" />
@@ -175,7 +181,7 @@ const Logins = (props) => {
                 <TabContent activeTab={selected} className="content-login">
                   <TabPane  className="fade show" tabId={selected === "firebase" ? "firebase" : "jwt"}>
                     <Form className="theme-form">
-                      <h4>{selected === "firebase" ? "Sign In With Firebase" : "Sign In With Jwt"}</h4>
+                      <h4>{selected === "firebase" ? "Sign In With Firebase" : "Sign In for Admin or Vendor"}</h4>
                       <p>{"Enter your email & password to login"}</p>
                       <FormGroup>
                         <Label className="col-form-label">{EmailAddress}</Label>
@@ -198,20 +204,8 @@ const Logins = (props) => {
                         }
                       </div>
                       <h6 className="text-muted mt-4 or">{"Or Sign in with"}</h6>
-                      <div className="social mt-4">
-                        <div className="btn-showcase">
-                          <Button color="light" onClick={facebookAuth} >
-                            <Facebook className="txt-fb" />
-                          </Button>
-                          <Button color="light" onClick={googleAuth} >
-                            <i className="fa fa-google txt-googleplus"></i>
-                          </Button>
-                          <Button color="light" onClick={githubAuth} >
-                            <GitHub />
-                          </Button>
-                        </div>
-                      </div>
-                      <p className="mt-4 mb-0">{"Don't have account?"}<a className="ml-2" href="#javascript">{CreateAccount}</a></p>
+                      
+                      <p className="mt-4 mb-0">{"Don't have account?"}<a className="ml-2" href="/signup">{CreateAccount}</a></p>
                     </Form>
                   </TabPane>
                   <TabPane  className="fade show" tabId="auth0">

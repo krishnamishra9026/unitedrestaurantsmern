@@ -29,7 +29,7 @@ const {errors, isValid } = validateRegisterInput(req.body);
 
   User.findOne({ email: req.body.email }).then(user => {
     if (user) {
-      return res.status(400).json({ error: "Email already exists" });
+      return res.status(400).json({ email: "Email already exists" });
     } else {
      
       
@@ -55,21 +55,49 @@ const {errors, isValid } = validateRegisterInput(req.body);
           newUser.password = hash;
           newUser
             .save()
-var name = req.body.first_name+' '+req.body.last_name; 
-            var sql = "INSERT INTO `users` (`role`, `name`, `email`, `mobile`, `password`) VALUES ('vendor', '"+name+"', '"+req.body.email+"', '"+req.body.mobile+"', '"+hash+"')";
-DB.query(sql, function (err, result) {  
-if (err) throw err;  
- return res.json({
+            const transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: 'YOUR EMAIL',
+                pass: 'YOUR PASSWORD'
+            }
+          });
+           
+           const mailOptions = {
+            from: "josphatwambugu77@gmail.com",
+            to:  req.body.email,
+            subject: "GRACE.K ONLINE SHOPPING  Account Activation",
+            text: `Hello ${
+              req.body.name
+            }, Please click the above link to activate our account!http://localhost:3000/verify/${jwt.sign({name: req.body.name},
+            keys.secretOrKey,
+            { expiresIn: 1200 // expires in 20min
+            }
+            )}`,
+            html: `Hello<strong> ${
+              req.body.name
+            }</strong>,<br><br>Please click the above link to activate our account!http://localhost:3000/verify/${jwt.sign({name: req.body.name},
+            keys.secretOrKey,
+            { expiresIn: 1200 // expires in 20min
+            }
+            )}`
+            };
+          
+          //Nodemailer SendMail
+          transporter.sendMail(mailOptions, (err, info) => {
+            if (err) {
+              console.log(err);
+              } else {
+              console.log(
+              " Message Confirmation -  : " + info.response
+              );
+              }
+              });
+              res.json({
                 
                 succeed: true,
-                message: "user inserted successfully!"
+                message: "Confirmation Email has been sent"
                 });
-});  
-         
-
-          
-   
-            
         });
       });
      
