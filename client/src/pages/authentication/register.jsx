@@ -2,18 +2,48 @@ import React,{useState} from 'react';
 import {Container,Row,Col,Form,FormGroup,Input,Label,Button} from 'reactstrap'
 import {Password,SignIn, EmailAddress ,CreateAccount, YourName, PrivacyPolicy} from '../../constant';
 import { Twitter, Facebook,GitHub } from 'react-feather';
+import axios from 'axios';
 
 const Register = (props) => {
+
+
+   const [user,setUser] = useState({
+        first_name:"",
+        last_name:"",
+        email:"",
+        password: ""
+    })
 
     const [togglePassword,setTogglePassword] = useState(false)
     const [password,setPassword] = useState("")
 
-    const handleChange = (e) => {
+    /*const handleChange = (e) => {
       setPassword(e.target.value)
+    }*/
+
+    const handleChange = e =>{
+    const {name,value} = e.target
+    setUser({
+    ...user,
+    [name]:value
+    })
     }
+
     const HideShowPassword  = (tPassword) => {
       setTogglePassword(!tPassword)
     }
+
+
+     const register = ()=>{
+   const {first_name,last_name,email,password} = user
+   if (first_name && last_name && email && password){
+    axios.post("api/users/register",user )
+    .then(res=>console.log(res))
+   }
+   else{
+       alert("invalid input")
+   }
+ }
 
     return (
       <Container fluid={true} className="p-0">
@@ -23,27 +53,28 @@ const Register = (props) => {
             <div>
               <div><a className="logo" href="#javascript"><img className="img-fluid for-light" src={require("../../assets/images/logo/login.png")} alt="looginpage"/><img className="img-fluid for-dark" src={require("../../assets/images/logo/logo_dark.png")} alt="looginpage"/></a></div>
               <div className="login-main"> 
-                <Form className="theme-form">
+                <Form className="theme-form" action="#" autoComplete="off">
                   <h4>{"Create your account"}</h4>
                   <p>{"Enter your personal details to create account"}</p>
                   <FormGroup>
                     <Label className="col-form-label pt-0">{YourName}</Label>
                     <div className="form-row">
                       <Col xs="6">
-                        <Input className="form-control" type="text" required="" placeholder="First name"/>
-                      </Col>
+                        <Input className="form-control" name="first_name" value={user.first_name} onChange={handleChange} type="text" required="" placeholder="First name"/>
+                      </Col>                      
                       <Col xs="6">
-                        <Input className="form-control" type="text" required="" placeholder="Last name"/>
+                        <Input className="form-control" name="last_name" value={user.last_name} onChange={handleChange} type="text" required="" placeholder="Last name"/>
                       </Col>
                     </div>
                   </FormGroup>
-                  <FormGroup>
+
+                    <FormGroup>
                     <Label className="col-form-label">{EmailAddress}</Label>
-                    <Input className="form-control" type="email" required="" placeholder="Test@gmail.com"/>
+                    <Input className="form-control" name="email" value={user.email} onChange={handleChange} type="email" required="" placeholder="Test@gmail.com"/>
                   </FormGroup>
                   <FormGroup>
                     <Label className="col-form-label">{Password}</Label>
-                    <Input className="form-control" type={togglePassword ?  "text" : "password" } name="login[password]" value={password} onChange={(e) => handleChange(e)} required="" placeholder="*********"/>
+                    <Input className="form-control" name="password" value={user.password} onChange={handleChange} type={togglePassword ?  "text" : "password" }  required="" placeholder="*********"/>
                     <div className="show-hide" onClick={() => HideShowPassword(togglePassword)}><span className={togglePassword ? "" : "show"}></span></div>
                   </FormGroup>
                   <div className="form-group mb-0">
@@ -51,24 +82,7 @@ const Register = (props) => {
                       <Input id="checkbox1" type="checkbox"/>
                       <Label className="text-muted" for="checkbox1">{"Agree with"}<a className="ml-2" href="#javascript">{PrivacyPolicy}</a></Label>
                     </div>
-                    <Button color="primary" className="btn-block" type="submit">{CreateAccount}</Button>
-                  </div>
-                  <h6 className="text-muted mt-4 or">{"Or signup with"}</h6>
-                  <div className="social mt-4">
-                    <div className="btn-showcase">
-                      <Button color="light">
-                        <Facebook className="txt-fb" />
-                      </Button>
-                      <Button color="light">
-                        <i className="icon-social-google txt-googleplus"></i>
-                      </Button>
-                      <Button color="light">
-                        <Twitter className="txt-twitter" />
-                      </Button>
-                      <Button color="light">
-                        <GitHub />
-                      </Button>
-                    </div>
+                    <Button color="primary" className="btn-block" type="submit" onClick={register}>{CreateAccount}</Button>
                   </div>
                   <p className="mt-4 mb-0">{"Already have an account?"}<a className="ml-2" href="#javascript">{SignIn}</a></p>
                 </Form>

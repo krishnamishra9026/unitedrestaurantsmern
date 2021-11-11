@@ -35,7 +35,7 @@ const {errors, isValid } = validateRegisterInput(req.body);
       
       const newUser = new User({
       
-        name: req.body.name,
+        name: req.body.first_name+ ' ' + req.body.last_name,
         email: req.body.email,
         password: req.body.password,
         role: (req.body.role) ? req.body.role : 'vendor',
